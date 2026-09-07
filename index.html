@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUMA — Forever Faster | BYT Ecosystem</title>
+    <meta name="description" content="PUMA Protocol for Unified Multi-chain Access. Part of BYT ecosystem. Access multiple chains from one gateway.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0A0A0A; color: #FFFFFF; line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .header.scrolled { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); padding: 12px 40px; }
+        .logo img { height: 40px; width: auto; }
+        .nav a { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-left: 30px; opacity: 0.7; transition: opacity 0.3s; font-weight: 600; }
+        .nav a:hover { opacity: 1; }
+        .header-controls { display: flex; align-items: center; gap: 16px; }
+        .lang-select { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #FFFFFF; padding: 8px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+        .lang-select option { background: #1A1A1A; color: #FFFFFF; }
+        .wallet-btn { background: #E5322C; border: none; color: #FFFFFF; padding: 10px 24px; border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .wallet-btn:hover { background: #c42924; transform: scale(1.02); }
+        
+        /* ===== HERO ===== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(229, 50, 44, 0.3);
+            padding: 6px 24px;
+            border-radius: 30px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #E5322C;
+            margin-bottom: 30px;
+            font-weight: 700;
+            border: 1px solid rgba(229, 50, 44, 0.3);
+        }
+        .hero-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 140px;
+            line-height: 1;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .hero-title span { color: #E5322C; }
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-value { font-family: 'Anton', sans-serif; font-size: 36px; color: #E5322C; letter-spacing: 1px; }
+        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; margin-top: 4px; }
+        
+        /* ===== ABOUT ===== */
+        .about { padding: 120px 0; background: #0A0A0A; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-image img { width: 100%; height: 500px; object-fit: cover; border-radius: 8px; }
+        .about-text h2 { font-family: 'Anton', sans-serif; font-size: 56px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; line-height: 1.1; }
+        .about-text h2 span { color: #E5322C; }
+        .about-text p { font-size: 18px; opacity: 0.7; margin-bottom: 30px; }
+        .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .feature { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 8px; text-align: center; border-bottom: 3px solid #E5322C; }
+        .feature-icon { font-size: 32px; margin-bottom: 8px; }
+        .feature-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* ===== ECOSYSTEM ===== */
+        .ecosystem {
+            padding: 120px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('photo-puma-collection.jpeg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-family: 'Anton', sans-serif; font-size: 56px; text-transform: uppercase; letter-spacing: 3px; }
+        .section-header h2 span { color: #E5322C; }
+        .section-header p { font-size: 18px; opacity: 0.7; margin-top: 12px; }
+        .brand-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+        .brand-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 24px 16px; border-radius: 8px; text-align: center; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.08); }
+        .brand-card:hover { border-color: #E5322C; transform: translateY(-5px); background: rgba(229, 50, 44, 0.1); }
+        .brand-logo { font-size: 28px; margin-bottom: 8px; font-weight: 700; }
+        .brand-name { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+        .brand-price { font-size: 12px; color: #E5322C; margin-top: 4px; font-weight: 700; }
+        
+        /* ===== SPEED (VIDEO 2) ===== */
+        .speed { padding: 120px 0; position: relative; overflow: hidden; }
+        .speed-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+        }
+        .speed-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .speed .container { position: relative; z-index: 2; }
+        .speed-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .speed-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 40px 30px; border-radius: 8px; text-align: center; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.08); }
+        .speed-card:hover { border-color: #E5322C; transform: translateY(-8px); }
+        .speed-card .icon { font-size: 48px; margin-bottom: 16px; }
+        .speed-card h3 { font-family: 'Anton', sans-serif; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+        .speed-card p { font-size: 16px; opacity: 0.7; }
+        
+        /* ===== STAKING ===== */
+        .staking {
+            padding: 120px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('photo-puma-team.jpeg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        .staking-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .pool-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 40px 30px; border-radius: 8px; text-align: center; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.08); }
+        .pool-card:hover { border-color: #E5322C; background: rgba(229, 50, 44, 0.05); }
+        .pool-card.premium { border-color: #E5322C; }
+        .pool-icon { font-size: 48px; margin-bottom: 16px; }
+        .pool-card h3 { font-family: 'Anton', sans-serif; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .apy { font-size: 36px; font-weight: 700; color: #E5322C; margin: 16px 0; }
+        .apy small { font-size: 16px; font-weight: 400; color: #FFFFFF; opacity: 0.5; }
+        .pool-desc { font-size: 14px; opacity: 0.6; margin-bottom: 20px; }
+        .pool-btn { display: inline-block; padding: 12px 32px; background: #E5322C; color: #FFFFFF; border-radius: 4px; transition: all 0.3s ease; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; font-weight: 700; border: none; cursor: pointer; }
+        .pool-btn:hover { background: #c42924; transform: scale(1.02); }
+        
+        /* ===== SHOES SECTION ===== */
+        .shoes { padding: 100px 0; background: #0A0A0A; }
+        .shoes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .shoes-card { background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 8px; text-align: center; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .shoes-card:hover { border-color: #E5322C; transform: translateY(-5px); }
+        .shoes-card img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 12px; }
+        .shoes-card h4 { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .shoes-card .price { color: #E5322C; font-weight: 700; margin-top: 4px; }
+        
+        /* ===== CONTRACT ADDRESS ===== */
+        .contract-section { padding: 60px 0; background: #0A0A0A; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .contract-box { max-width: 900px; margin: 0 auto; text-align: center; padding: 30px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .contract-box h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.6; margin-bottom: 12px; }
+        .contract-box code { font-family: 'Courier New', monospace; font-size: 16px; color: #E5322C; word-break: break-all; display: block; margin: 16px 0; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 4px; border: 1px solid rgba(229,50,44,0.2); }
+        .contract-box .copy-btn { background: #E5322C; border: none; color: #FFFFFF; padding: 8px 24px; border-radius: 4px; font-weight: 700; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; }
+        .contract-box .copy-btn:hover { background: #c42924; }
+        .contract-box .links { margin-top: 16px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .contract-box .links a { font-size: 13px; color: #E5322C; text-decoration: underline; opacity: 0.7; transition: opacity 0.3s; }
+        .contract-box .links a:hover { opacity: 1; }
+        
+        /* ===== COUNTER ===== */
+        .counter-section { padding: 80px 0; background: #0A0A0A; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .counter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 800px; margin: 0 auto; text-align: center; }
+        .counter-item { padding: 30px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .counter-number { font-family: 'Anton', sans-serif; font-size: 64px; color: #E5322C; letter-spacing: 2px; }
+        .counter-label { font-size: 14px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.6; margin-top: 8px; }
+        .counter-timestamp { font-size: 11px; opacity: 0.3; margin-top: 16px; font-family: 'Courier New', monospace; }
+        
+        /* ===== TICKER ===== */
+        .ticker { background: #1A1A1A; padding: 12px 0; overflow: hidden; border-top: 1px solid rgba(229, 50, 44, 0.2); border-bottom: 1px solid rgba(229, 50, 44, 0.2); }
+        .ticker-content { display: flex; animation: ticker-scroll 25s linear infinite; white-space: nowrap; }
+        .ticker-item { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; padding: 0 40px; opacity: 0.7; font-weight: 400; }
+        .ticker-item span { color: #E5322C; font-weight: 700; }
+        @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        /* ===== LIQUIDITY POOL ===== */
+        .liquidity-section { padding: 80px 0; background: #0A0A0A; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* ===== FOOTER ===== */
+        .footer { padding: 60px 0 30px; background: #0A0A0A; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; }
+        .footer-brand img { height: 32px; width: auto; }
+        .footer-links { display: flex; gap: 30px; }
+        .footer-links a { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; transition: opacity 0.3s; }
+        .footer-links a:hover { opacity: 1; }
+        .footer-disclaimer { width: 100%; font-size: 11px; opacity: 0.3; text-align: center; margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 80px; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .speed-grid { grid-template-columns: repeat(2, 1fr); }
+            .staking-grid { grid-template-columns: repeat(2, 1fr); }
+            .shoes-grid { grid-template-columns: repeat(2, 1fr); }
+            .brand-grid { grid-template-columns: repeat(3, 1fr); }
+            .counter-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .header { padding: 12px 20px; flex-wrap: wrap; gap: 10px; }
+            .nav a { margin-left: 16px; font-size: 10px; }
+            .hero-title { font-size: 56px; letter-spacing: -1px; }
+            .hero-stats { gap: 20px; }
+            .speed-grid { grid-template-columns: 1fr; }
+            .staking-grid { grid-template-columns: 1fr; }
+            .shoes-grid { grid-template-columns: 1fr 1fr; }
+            .brand-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-features { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .counter-number { font-size: 48px; }
+            .contract-box code { font-size: 13px; }
+        }
+        @media (max-width: 480px) {
+            .hero-title { font-size: 40px; }
+            .hero-subtitle { font-size: 13px; letter-spacing: 4px; }
+            .brand-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .shoes-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <a href="index.html" class="logo">
+            <img src="puma_logo.jpg" alt="PUMA" height="40">
+        </a>
+        <nav class="nav">
+            <a href="#about" data-i18n="nav_about">About</a>
+            <a href="#speed" data-i18n="nav_speed">Speed</a>
+            <a href="#staking" data-i18n="nav_staking">Staking</a>
+            <a href="#shoes" data-i18n="nav_shoes">Shoes</a>
+        </nav>
+        <div class="header-controls">
+            <select class="lang-select" id="langSelect">
+                <option value="en">🇬🇧 EN</option>
+                <option value="ru">🇷🇺 RU</option>
+                <option value="zh">🇨🇳 中文</option>
+                <option value="es">🇪🇸 ES</option>
+                <option value="fr">🇫🇷 FR</option>
+                <option value="de">🇩🇪 DE</option>
+                <option value="it">🇮🇹 IT</option>
+                <option value="pt">🇵🇹 PT</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="ar">🇸🇦 العربية</option>
+            </select>
+            <button class="wallet-btn" id="connectWallet" data-i18n="wallet_btn">Connect Wallet</button>
+        </div>
+    </header>
+
+    <!-- HERO (video 1) -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="video-puma-hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <div class="hero-badge" data-i18n="hero_badge">⚡ Forever Faster</div>
+            <h1 class="hero-title">FOREVER <span>FASTER</span></h1>
+            <p class="hero-subtitle" data-i18n="hero_subtitle">PUMA Token — Multi-Chain Access Protocol</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">$1.00</div>
+                    <div class="stat-label" data-i18n="stat_price">PUMA Price</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$10B</div>
+                    <div class="stat-label" data-i18n="stat_mcap">Market Cap</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label" data-i18n="stat_holders">Holders</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$300M</div>
+                    <div class="stat-label" data-i18n="stat_liquidity">Liquidity</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT (photo 1) -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="photo-puma-athlete.jpg" alt="PUMA Athlete" loading="lazy">
+                </div>
+                <div class="about-text">
+                    <h2 data-i18n="about_title">PUMA — <span>Not a Meme</span></h2>
+                    <p data-i18n="about_desc">Protocol for Unified Multi-chain Access. The gateway token of the BYT ecosystem, designed for seamless cross-chain interoperability. Built for speed, style, and innovation.</p>
+                    <div class="about-features">
+                        <div class="feature"><div class="feature-icon">⚡</div><div class="feature-title" data-i18n="feature_speed">Speed</div></div>
+                        <div class="feature"><div class="feature-icon">🌐</div><div class="feature-title" data-i18n="feature_multi">Multi-Chain</div></div>
+                        <div class="feature"><div class="feature-icon">🔗</div><div class="feature-title" data-i18n="feature_gateway">Unified Gateway</div></div>
+                        <div class="feature"><div class="feature-icon">🏆</div><div class="feature-title" data-i18n="feature_rewards">Access Rewards</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ECOSYSTEM (photo 2 - фон) -->
+    <section class="ecosystem" id="ecosystem">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="ecosystem_title">BYT <span>Ecosystem</span></h2>
+                <p data-i18n="ecosystem_desc">12 brand tokens in one ecosystem</p>
+            </div>
+            <div class="brand-grid">
+                <div class="brand-card"><div class="brand-logo">PUMA</div><div class="brand-name">PUMA</div><div class="brand-price">$1.00</div></div>
+                <div class="brand-card"><div class="brand-logo">NIKE</div><div class="brand-name">Nike</div><div class="brand-price">$1.00</div></div>
+                <div class="brand-card"><div class="brand-logo">DKNY</div><div class="brand-name">Donna Kahn NY</div><div class="brand-price">$1.00</div></div>
+                <div class="brand-card"><div class="brand-logo">JVC</div><div class="brand-name">JVC</div><div class="brand-price">$0.01</div></div>
+                <div class="brand-card"><div class="brand-logo">ZARA</div><div class="brand-name">ZARA</div><div class="brand-price">$0.01</div></div>
+                <div class="brand-card"><div class="brand-logo">GUCCI</div><div class="brand-name">GUCCI</div><div class="brand-price">$0.01</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPEED (video 2) -->
+    <section class="speed" id="speed">
+        <video class="speed-video" autoplay muted loop playsinline>
+            <source src="video-puma-speed.mp4" type="video/mp4">
+        </video>
+        <div class="speed-overlay"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="speed_title"><span>Speed</span> & Innovation</h2>
+                <p data-i18n="speed_desc">Unified access to multiple blockchains from one gateway</p>
+            </div>
+            <div class="speed-grid">
+                <div class="speed-card">
+                    <div class="icon">⚡</div>
+                    <h3 data-i18n="speed_card1_title">Lightning Speed</h3>
+                    <p data-i18n="speed_card1_desc">Access multiple chains with near-zero latency. Built for high-frequency DeFi operations.</p>
+                </div>
+                <div class="speed-card">
+                    <div class="icon">🔗</div>
+                    <h3 data-i18n="speed_card2_title">Unified Gateway</h3>
+                    <p data-i18n="speed_card2_desc">One entry point for all your cross-chain needs. Swap, stake, and bridge seamlessly.</p>
+                </div>
+                <div class="speed-card">
+                    <div class="icon">🏆</div>
+                    <h3 data-i18n="speed_card3_title">Access Rewards</h3>
+                    <p data-i18n="speed_card3_desc">Earn PUMA tokens by participating in the multi-chain ecosystem. Stake for rewards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STAKING (video 3 - фон) -->
+    <section class="staking" id="staking">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="staking_title">Staking <span>PUMA</span></h2>
+                <p data-i18n="staking_desc">Earn up to 30% APY in BYT tokens</p>
+            </div>
+            <div class="staking-grid">
+                <div class="pool-card">
+                    <div class="pool-icon">💎</div>
+                    <h3 data-i18n="pool_basic_title">Basic Pool</h3>
+                    <div class="apy">15% <small data-i18n="apy_label">APY</small></div>
+                    <p class="pool-desc" data-i18n="pool_basic_desc">Entry level for all holders</p>
+                    <a href="#" class="pool-btn" data-i18n="pool_btn">Stake Now</a>
+                </div>
+                <div class="pool-card premium">
+                    <div class="pool-icon">👑</div>
+                    <h3 data-i18n="pool_premium_title">Premium Pool</h3>
+                    <div class="apy">30% <small data-i18n="apy_label">APY</small></div>
+                    <p class="pool-desc" data-i18n="pool_premium_desc">Requires 500 PUMA staked</p>
+                    <a href="#" class="pool-btn" data-i18n="pool_btn">Stake Now</a>
+                </div>
+                <div class="pool-card">
+                    <div class="pool-icon">🌟</div>
+                    <h3 data-i18n="pool_creator_title">Creator Pool</h3>
+                    <div class="apy">40% <small data-i18n="apy_label">APY</small></div>
+                    <p class="pool-desc" data-i18n="pool_creator_desc">Exclusive for ecosystem builders</p>
+                    <a href="#" class="pool-btn" data-i18n="pool_btn">Stake Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOES (photo 3) -->
+    <section class="shoes" id="shoes">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="shoes_title">PUMA <span>Collection</span></h2>
+                <p data-i18n="shoes_desc">Virtual and physical sneakers coming soon</p>
+            </div>
+            <div class="shoes-grid">
+                <div class="shoes-card">
+                    <img src="photo-puma-shoes.jpeg" alt="PUMA Suede" loading="lazy">
+                    <h4>PUMA Suede</h4>
+                    <div class="price">0.5 PUMA</div>
+                </div>
+                <div class="shoes-card">
+                    <img src="photo-puma-shoes.jpeg" alt="PUMA Future" loading="lazy">
+                    <h4>PUMA Future</h4>
+                    <div class="price">0.8 PUMA</div>
+                </div>
+                <div class="shoes-card">
+                    <img src="photo-puma-shoes.jpeg" alt="PUMA RS-X" loading="lazy">
+                    <h4>PUMA RS-X</h4>
+                    <div class="price">1.2 PUMA</div>
+                </div>
+                <div class="shoes-card">
+                    <img src="photo-puma-shoes.jpeg" alt="PUMA Speed" loading="lazy">
+                    <h4>PUMA Speed</h4>
+                    <div class="price">2.0 PUMA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIQUIDITY POOL -->
+    <section class="liquidity-section" id="liquidity">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="liquidity_title">Liquidity <span>Pool</span></h2>
+                <p data-i18n="liquidity_desc">Real liquidity on Meteora V2</p>
+            </div>
+            <div class="staking-grid">
+                <div class="pool-card" style="background: rgba(255, 255, 255, 0.03);">
+                    <div class="pool-icon">💱</div>
+                    <h3>PUMA / USDT</h3>
+                    <div class="apy">$300.5M <small data-i18n="liquidity_label">liquidity</small></div>
+                    <p class="pool-desc" data-i18n="pool_meteora">Meteora V2 • Age: 4 months</p>
+                    <a href="https://www.geckoterminal.com/solana/pools/A9tzi1UmeJMQCptGFQKBWiAG4tjNu99tZquqgG4ki5va" target="_blank" class="pool-btn" data-i18n="pool_open">Open Pool →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTRACT ADDRESS -->
+    <section class="contract-section">
+        <div class="container">
+            <div class="contract-box">
+                <h3 data-i18n="contract_title">📜 Contract Address</h3>
+                <code id="contractAddress">HJ7UzMZw2vUcVoWwS7H2t2YdZiGFm6DqTqSzofc5g7ZB</code>
+                <button class="copy-btn" onclick="copyAddress()" data-i18n="contract_copy">📋 Copy Address</button>
+                <div class="links">
+                    <a href="https://opensea.io/token/solana/HJ7UzMZw2vUcVoWwS7H2t2YdZiGFm6DqTqSzofc5g7ZB" target="_blank" data-i18n="contract_opensea">View on OpenSea</a>
+                    <a href="https://www.geckoterminal.com/solana/pools/A9tzi1UmeJMQCptGFQKBWiAG4tjNu99tZquqgG4ki5va" target="_blank" data-i18n="contract_gecko">View on GeckoTerminal</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTER -->
+    <section class="counter-section">
+        <div class="container">
+            <div class="counter-grid">
+                <div class="counter-item">
+                    <div class="counter-number counter-visitors">119,800</div>
+                    <div class="counter-label" data-i18n="counter_visitors">Unique Visitors</div>
+                    <div class="counter-timestamp counter-visitor-time" data-i18n="counter_since">Since 2026</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number counter-clients">36</div>
+                    <div class="counter-label" data-i18n="counter_clients">Active Clients</div>
+                    <div class="counter-timestamp counter-client-time" data-i18n="counter_verified">Verified on-chain</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker">
+        <div class="ticker-content">
+            <span class="ticker-item">✦ PUMA is <span>not a meme</span></span>
+            <span class="ticker-item">✦ Multi-chain access <span>protocol</span></span>
+            <span class="ticker-item">✦ Unified gateway <span>coming soon</span></span>
+            <span class="ticker-item">✦ Stake for <span>access rewards</span></span>
+            <span class="ticker-item">✦ Cross-chain <span>interoperability</span></span>
+            <span class="ticker-item">✦ Staking APY up to <span>40%</span></span>
+            <span class="ticker-item">✦ PUMA is <span>not a meme</span></span>
+            <span class="ticker-item">✦ Multi-chain access <span>protocol</span></span>
+            <span class="ticker-item">✦ Unified gateway <span>coming soon</span></span>
+            <span class="ticker-item">✦ Stake for <span>access rewards</span></span>
+            <span class="ticker-item">✦ Cross-chain <span>interoperability</span></span>
+            <span class="ticker-item">✦ Staking APY up to <span>40%</span></span>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="puma_logo.jpg" alt="PUMA" height="32">
+                </div>
+                <div class="footer-links">
+                    <a href="#about" data-i18n="footer_about">About</a>
+                    <a href="#speed" data-i18n="footer_speed">Speed</a>
+                    <a href="#staking" data-i18n="footer_staking">Staking</a>
+                    <a href="https://t.me/puma_token" target="_blank" data-i18n="footer_telegram">Telegram</a>
+                    <a href="#" target="_blank" data-i18n="footer_twitter">Twitter</a>
+                </div>
+            </div>
+            <div class="footer-disclaimer" data-i18n="footer_disclaimer">
+                ⚠️ <strong>PUMA</strong> is an independent SPL token (Protocol for Unified Multi-chain Access). 
+                Not affiliated with PUMA SE. The token is part of the BYT ecosystem and serves as 
+                a utility token for cross-chain interoperability. All brand names are fictional 
+                abbreviations used within the BYT ecosystem.
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // ============================================================
+        // ===== ПЕРЕВОДЧИК =====
+        // ============================================================
+        const translations = {
+            en: {
+                nav_about: 'About',
+                nav_speed: 'Speed',
+                nav_staking: 'Staking',
+                nav_shoes: 'Shoes',
+                wallet_btn: 'Connect Wallet',
+                hero_badge: '⚡ Forever Faster',
+                hero_subtitle: 'PUMA Token — Multi-Chain Access Protocol',
+                stat_price: 'PUMA Price',
+                stat_mcap: 'Market Cap',
+                stat_holders: 'Holders',
+                stat_liquidity: 'Liquidity',
+                about_title: 'PUMA — <span>Not a Meme</span>',
+                about_desc: 'Protocol for Unified Multi-chain Access. The gateway token of the BYT ecosystem, designed for seamless cross-chain interoperability. Built for speed, style, and innovation.',
+                feature_speed: 'Speed',
+                feature_multi: 'Multi-Chain',
+                feature_gateway: 'Unified Gateway',
+                feature_rewards: 'Access Rewards',
+                ecosystem_title: 'BYT <span>Ecosystem</span>',
+                ecosystem_desc: '12 brand tokens in one ecosystem',
+                speed_title: '<span>Speed</span> & Innovation',
+                speed_desc: 'Unified access to multiple blockchains from one gateway',
+                speed_card1_title: 'Lightning Speed',
+                speed_card1_desc: 'Access multiple chains with near-zero latency. Built for high-frequency DeFi operations.',
+                speed_card2_title: 'Unified Gateway',
+                speed_card2_desc: 'One entry point for all your cross-chain needs. Swap, stake, and bridge seamlessly.',
+                speed_card3_title: 'Access Rewards',
+                speed_card3_desc: 'Earn PUMA tokens by participating in the multi-chain ecosystem. Stake for rewards.',
+                staking_title: 'Staking <span>PUMA</span>',
+                staking_desc: 'Earn up to 30% APY in BYT tokens',
+                pool_basic_title: 'Basic Pool',
+                pool_premium_title: 'Premium Pool',
+                pool_creator_title: 'Creator Pool',
+                pool_basic_desc: 'Entry level for all holders',
+                pool_premium_desc: 'Requires 500 PUMA staked',
+                pool_creator_desc: 'Exclusive for ecosystem builders',
+                pool_btn: 'Stake Now',
+                apy_label: 'APY',
+                shoes_title: 'PUMA <span>Collection</span>',
+                shoes_desc: 'Virtual and physical sneakers coming soon',
+                liquidity_title: 'Liquidity <span>Pool</span>',
+                liquidity_desc: 'Real liquidity on Meteora V2',
+                liquidity_label: 'liquidity',
+                pool_meteora: 'Meteora V2 • Age: 4 months',
+                pool_open: 'Open Pool →',
+                contract_title: '📜 Contract Address',
+                contract_copy: '📋 Copy Address',
+                contract_opensea: 'View on OpenSea',
+                contract_gecko: 'View on GeckoTerminal',
+                counter_visitors: 'Unique Visitors',
+                counter_clients: 'Active Clients',
+                counter_since: 'Since 2026',
+                counter_verified: 'Verified on-chain',
+                footer_about: 'About',
+                footer_speed: 'Speed',
+                footer_staking: 'Staking',
+                footer_telegram: 'Telegram',
+                footer_twitter: 'Twitter',
+                footer_disclaimer: '⚠️ <strong>PUMA</strong> is an independent SPL token (Protocol for Unified Multi-chain Access). Not affiliated with PUMA SE. The token is part of the BYT ecosystem and serves as a utility token for cross-chain interoperability. All brand names are fictional abbreviations used within the BYT ecosystem.'
+            },
+            ru: {
+                nav_about: 'О нас',
+                nav_speed: 'Скорость',
+                nav_staking: 'Стейкинг',
+                nav_shoes: 'Кроссовки',
+                wallet_btn: 'Подключить кошелек',
+                hero_badge: '⚡ Навсегда Быстрее',
+                hero_subtitle: 'Токен PUMA — Протокол мультичейн доступа',
+                stat_price: 'Цена PUMA',
+                stat_mcap: 'Рыночная капа',
+                stat_holders: 'Холдеры',
+                stat_liquidity: 'Ликвидность',
+                about_title: 'PUMA — <span>Не мем</span>',
+                about_desc: 'Протокол унифицированного мультичейн доступа. Токен-шлюз экосистемы BYT, созданный для бесшовной межсетевой совместимости. Создан для скорости, стиля и инноваций.',
+                feature_speed: 'Скорость',
+                feature_multi: 'Мультичейн',
+                feature_gateway: 'Универсальный шлюз',
+                feature_rewards: 'Награды за доступ',
+                ecosystem_title: 'Экосистема <span>BYT</span>',
+                ecosystem_desc: '12 брендовых токенов в одной экосистеме',
+                speed_title: '<span>Скорость</span> и инновации',
+                speed_desc: 'Унифицированный доступ к нескольким блокчейнам из одного шлюза',
+                speed_card1_title: 'Молниеносная скорость',
+                speed_card1_desc: 'Доступ к нескольким сетям с почти нулевой задержкой. Создан для высокочастотных DeFi операций.',
+                speed_card2_title: 'Универсальный шлюз',
+                speed_card2_desc: 'Одна точка входа для всех ваших кроссчейн-потребностей. Обмен, стейкинг и мосты без проблем.',
+                speed_card3_title: 'Награды за доступ',
+                speed_card3_desc: 'Зарабатывайте токены PUMA, участвуя в мультичейн экосистеме. Стейкайте для получения наград.',
+                staking_title: 'Стейкинг <span>PUMA</span>',
+                staking_desc: 'Зарабатывайте до 30% годовых в токенах BYT',
+                pool_basic_title: 'Базовый пул',
+                pool_premium_title: 'Премиум пул',
+                pool_creator_title: 'Креаторский пул',
+                pool_basic_desc: 'Входной уровень для всех холдеров',
+                pool_premium_desc: 'Требуется 500 PUMA в стейкинге',
+                pool_creator_desc: 'Эксклюзивно для строителей экосистемы',
+                pool_btn: 'Застейкать',
+                apy_label: 'APY',
+                shoes_title: 'Коллекция <span>PUMA</span>',
+                shoes_desc: 'Виртуальные и физические кроссовки скоро',
+                liquidity_title: 'Пул <span>Ликвидности</span>',
+                liquidity_desc: 'Реальная ликвидность на Meteora V2',
+                liquidity_label: 'ликвидность',
+                pool_meteora: 'Meteora V2 • Возраст: 4 месяца',
+                pool_open: 'Открыть пул →',
+                contract_title: '📜 Адрес контракта',
+                contract_copy: '📋 Копировать адрес',
+                contract_opensea: 'Посмотреть на OpenSea',
+                contract_gecko: 'Посмотреть на GeckoTerminal',
+                counter_visitors: 'Уникальные посетители',
+                counter_clients: 'Активные клиенты',
+                counter_since: 'С 2026',
+                counter_verified: 'Верифицировано в блокчейне',
+                footer_about: 'О нас',
+                footer_speed: 'Скорость',
+                footer_staking: 'Стейкинг',
+                footer_telegram: 'Telegram',
+                footer_twitter: 'Twitter',
+                footer_disclaimer: '⚠️ <strong>PUMA</strong> — независимый SPL-токен (Protocol for Unified Multi-chain Access). Не аффилирован с PUMA SE. Токен является частью экосистемы BYT и служит утилитарным токеном для межсетевой совместимости. Все названия брендов являются вымышленными аббревиатурами, используемыми в экосистеме BYT.'
+            }
+            // Добавьте остальные языки по аналогии с NIKE и DKNY
+        };
+
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            localStorage.setItem('puma_lang', lang);
+        }
+
+        document.getElementById('langSelect').addEventListener('change', function() {
+            changeLanguage(this.value);
+        });
+
+        const savedLang = localStorage.getItem('puma_lang') || 'en';
+        document.getElementById('langSelect').value = savedLang;
+        changeLanguage(savedLang);
+
+        // ============================================================
+        // ===== ОСТАЛЬНЫЕ СКРИПТЫ =====
+        // ============================================================
+
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        document.getElementById('connectWallet').addEventListener('click', function() {
+            alert('🔗 Connect Solana Wallet (Phantom/Backpack)');
+        });
+
+        function copyAddress() {
+            const address = document.getElementById('contractAddress').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => { btn.textContent = originalText; }, 2000);
+            }).catch(() => {
+                alert('Press Ctrl+C to copy: ' + address);
+            });
+        }
+    </script>
+    
+    <script src="counter.js"></script>
+</body>
+</html>
