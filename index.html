@@ -9,13 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
+        /* ===== ВСЕ ТЕ ЖЕ СТИЛИ (без изменений) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0A0A0A; color: #FFFFFF; line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
         
-        /* ===== HEADER ===== */
         .header {
             position: fixed;
             top: 0;
@@ -39,86 +38,19 @@
         .wallet-btn { background: #E5322C; border: none; color: #FFFFFF; padding: 10px 24px; border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
         .wallet-btn:hover { background: #c42924; transform: scale(1.02); }
         
-        /* ===== HERO ===== */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-            z-index: 0;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.55);
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            padding: 0 20px;
-        }
-        .hero-badge {
-            display: inline-block;
-            background: rgba(229, 50, 44, 0.3);
-            padding: 6px 24px;
-            border-radius: 30px;
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #E5322C;
-            margin-bottom: 30px;
-            font-weight: 700;
-            border: 1px solid rgba(229, 50, 44, 0.3);
-        }
-        .hero-title {
-            font-family: 'Anton', sans-serif;
-            font-size: 140px;
-            line-height: 1;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.5);
-        }
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
+        .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); object-fit: cover; z-index: 0; }
+        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); z-index: 1; }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; padding: 0 20px; }
+        .hero-badge { display: inline-block; background: rgba(229, 50, 44, 0.3); padding: 6px 24px; border-radius: 30px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #E5322C; margin-bottom: 30px; font-weight: 700; border: 1px solid rgba(229, 50, 44, 0.3); }
+        .hero-title { font-family: 'Anton', sans-serif; font-size: 140px; line-height: 1; margin-bottom: 16px; text-transform: uppercase; letter-spacing: -2px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); }
         .hero-title span { color: #E5322C; }
-        .hero-subtitle {
-            font-size: 18px;
-            font-weight: 300;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            opacity: 0.8;
-            margin-bottom: 40px;
-        }
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
+        .hero-subtitle { font-size: 18px; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; opacity: 0.8; margin-bottom: 40px; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
         .stat { text-align: center; }
         .stat-value { font-family: 'Anton', sans-serif; font-size: 36px; color: #E5322C; letter-spacing: 1px; }
         .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; margin-top: 4px; }
         
-        /* ===== ABOUT ===== */
         .about { padding: 120px 0; background: #0A0A0A; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
         .about-image img { width: 100%; height: 500px; object-fit: cover; border-radius: 8px; }
@@ -130,12 +62,7 @@
         .feature-icon { font-size: 32px; margin-bottom: 8px; }
         .feature-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* ===== ECOSYSTEM ===== */
-        .ecosystem {
-            padding: 120px 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('photo-puma-collection.jpeg') center/cover no-repeat;
-            background-attachment: fixed;
-        }
+        .ecosystem { padding: 120px 0; background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('photo-puma-collection.jpeg') center/cover no-repeat; background-attachment: fixed; }
         .section-header { text-align: center; margin-bottom: 60px; }
         .section-header h2 { font-family: 'Anton', sans-serif; font-size: 56px; text-transform: uppercase; letter-spacing: 3px; }
         .section-header h2 span { color: #E5322C; }
@@ -147,29 +74,9 @@
         .brand-name { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
         .brand-price { font-size: 12px; color: #E5322C; margin-top: 4px; font-weight: 700; }
         
-        /* ===== SPEED (VIDEO 2) ===== */
         .speed { padding: 120px 0; position: relative; overflow: hidden; }
-        .speed-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-            z-index: 0;
-        }
-        .speed-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1;
-        }
+        .speed-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); object-fit: cover; z-index: 0; }
+        .speed-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1; }
         .speed .container { position: relative; z-index: 2; }
         .speed-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .speed-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 40px 30px; border-radius: 8px; text-align: center; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.08); }
@@ -178,12 +85,7 @@
         .speed-card h3 { font-family: 'Anton', sans-serif; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
         .speed-card p { font-size: 16px; opacity: 0.7; }
         
-        /* ===== STAKING ===== */
-        .staking {
-            padding: 120px 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('photo-puma-team.jpeg') center/cover no-repeat;
-            background-attachment: fixed;
-        }
+        .staking { padding: 120px 0; background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('photo-puma-team.jpeg') center/cover no-repeat; background-attachment: fixed; }
         .staking-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .pool-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 40px 30px; border-radius: 8px; text-align: center; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.08); }
         .pool-card:hover { border-color: #E5322C; background: rgba(229, 50, 44, 0.05); }
@@ -196,7 +98,6 @@
         .pool-btn { display: inline-block; padding: 12px 32px; background: #E5322C; color: #FFFFFF; border-radius: 4px; transition: all 0.3s ease; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; font-weight: 700; border: none; cursor: pointer; }
         .pool-btn:hover { background: #c42924; transform: scale(1.02); }
         
-        /* ===== SHOES SECTION ===== */
         .shoes { padding: 100px 0; background: #0A0A0A; }
         .shoes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
         .shoes-card { background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 8px; text-align: center; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.05); }
@@ -205,7 +106,6 @@
         .shoes-card h4 { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         .shoes-card .price { color: #E5322C; font-weight: 700; margin-top: 4px; }
         
-        /* ===== CONTRACT ADDRESS ===== */
         .contract-section { padding: 60px 0; background: #0A0A0A; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .contract-box { max-width: 900px; margin: 0 auto; text-align: center; padding: 30px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); }
         .contract-box h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.6; margin-bottom: 12px; }
@@ -216,7 +116,6 @@
         .contract-box .links a { font-size: 13px; color: #E5322C; text-decoration: underline; opacity: 0.7; transition: opacity 0.3s; }
         .contract-box .links a:hover { opacity: 1; }
         
-        /* ===== COUNTER ===== */
         .counter-section { padding: 80px 0; background: #0A0A0A; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .counter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 800px; margin: 0 auto; text-align: center; }
         .counter-item { padding: 30px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); }
@@ -224,17 +123,14 @@
         .counter-label { font-size: 14px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.6; margin-top: 8px; }
         .counter-timestamp { font-size: 11px; opacity: 0.3; margin-top: 16px; font-family: 'Courier New', monospace; }
         
-        /* ===== TICKER ===== */
         .ticker { background: #1A1A1A; padding: 12px 0; overflow: hidden; border-top: 1px solid rgba(229, 50, 44, 0.2); border-bottom: 1px solid rgba(229, 50, 44, 0.2); }
         .ticker-content { display: flex; animation: ticker-scroll 25s linear infinite; white-space: nowrap; }
         .ticker-item { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; padding: 0 40px; opacity: 0.7; font-weight: 400; }
         .ticker-item span { color: #E5322C; font-weight: 700; }
         @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
-        /* ===== LIQUIDITY POOL ===== */
         .liquidity-section { padding: 80px 0; background: #0A0A0A; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         
-        /* ===== FOOTER ===== */
         .footer { padding: 60px 0 30px; background: #0A0A0A; }
         .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; }
         .footer-brand img { height: 32px; width: auto; }
@@ -243,7 +139,6 @@
         .footer-links a:hover { opacity: 1; }
         .footer-disclaimer { width: 100%; font-size: 11px; opacity: 0.3; text-align: center; margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
         
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .hero-title { font-size: 80px; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -305,7 +200,7 @@
         </div>
     </header>
 
-    <!-- HERO (video 1) -->
+    <!-- HERO -->
     <section class="hero">
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="video-puma-hero.mp4" type="video/mp4">
@@ -335,7 +230,7 @@
         </div>
     </section>
 
-    <!-- ABOUT (photo 1) -->
+    <!-- ABOUT -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-grid">
@@ -356,7 +251,7 @@
         </div>
     </section>
 
-    <!-- ECOSYSTEM (photo 2 - фон) -->
+    <!-- ECOSYSTEM -->
     <section class="ecosystem" id="ecosystem">
         <div class="container">
             <div class="section-header">
@@ -374,7 +269,7 @@
         </div>
     </section>
 
-    <!-- SPEED (video 2) -->
+    <!-- SPEED -->
     <section class="speed" id="speed">
         <video class="speed-video" autoplay muted loop playsinline>
             <source src="video-puma-speed.mp4" type="video/mp4">
@@ -405,7 +300,7 @@
         </div>
     </section>
 
-    <!-- STAKING (video 3 - фон) -->
+    <!-- STAKING -->
     <section class="staking" id="staking">
         <div class="container">
             <div class="section-header">
@@ -438,7 +333,7 @@
         </div>
     </section>
 
-    <!-- SHOES (photo 3) -->
+    <!-- SHOES -->
     <section class="shoes" id="shoes">
         <div class="container">
             <div class="section-header">
@@ -690,7 +585,7 @@
                 footer_twitter: 'Twitter',
                 footer_disclaimer: '⚠️ <strong>PUMA</strong> — независимый SPL-токен (Protocol for Unified Multi-chain Access). Не аффилирован с PUMA SE. Токен является частью экосистемы BYT и служит утилитарным токеном для межсетевой совместимости. Все названия брендов являются вымышленными аббревиатурами, используемыми в экосистеме BYT.'
             }
-            // Добавьте остальные языки по аналогии с NIKE и DKNY
+            // Добавьте остальные языки (zh, es, fr, de, it, pt, ja, ar) по аналогии с NIKE или DKNY
         };
 
         function changeLanguage(lang) {
@@ -742,6 +637,7 @@
         }
     </script>
     
+    <!-- ===== ПОДКЛЮЧАЕМ СЧЁТЧИК ===== -->
     <script src="counter.js"></script>
 </body>
 </html>
