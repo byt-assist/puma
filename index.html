@@ -9,12 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* ===== ВСЕ ТЕ ЖЕ СТИЛИ (без изменений) ===== */
+        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0A0A0A; color: #FFFFFF; line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
         
+        /* ===== HEADER ===== */
         .header {
             position: fixed;
             top: 0;
@@ -38,19 +39,86 @@
         .wallet-btn { background: #E5322C; border: none; color: #FFFFFF; padding: 10px 24px; border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
         .wallet-btn:hover { background: #c42924; transform: scale(1.02); }
         
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
-        .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); object-fit: cover; z-index: 0; }
-        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); z-index: 1; }
-        .hero-content { position: relative; z-index: 2; max-width: 900px; padding: 0 20px; }
-        .hero-badge { display: inline-block; background: rgba(229, 50, 44, 0.3); padding: 6px 24px; border-radius: 30px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #E5322C; margin-bottom: 30px; font-weight: 700; border: 1px solid rgba(229, 50, 44, 0.3); }
-        .hero-title { font-family: 'Anton', sans-serif; font-size: 140px; line-height: 1; margin-bottom: 16px; text-transform: uppercase; letter-spacing: -2px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+        /* ===== HERO ===== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(229, 50, 44, 0.3);
+            padding: 6px 24px;
+            border-radius: 30px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #E5322C;
+            margin-bottom: 30px;
+            font-weight: 700;
+            border: 1px solid rgba(229, 50, 44, 0.3);
+        }
+        .hero-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 140px;
+            line-height: 1;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
         .hero-title span { color: #E5322C; }
-        .hero-subtitle { font-size: 18px; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; opacity: 0.8; margin-bottom: 40px; }
-        .hero-stats { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
         .stat { text-align: center; }
         .stat-value { font-family: 'Anton', sans-serif; font-size: 36px; color: #E5322C; letter-spacing: 1px; }
         .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; margin-top: 4px; }
         
+        /* ===== ABOUT ===== */
         .about { padding: 120px 0; background: #0A0A0A; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
         .about-image img { width: 100%; height: 500px; object-fit: cover; border-radius: 8px; }
@@ -62,6 +130,7 @@
         .feature-icon { font-size: 32px; margin-bottom: 8px; }
         .feature-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         
+        /* ===== ECOSYSTEM ===== */
         .ecosystem { padding: 120px 0; background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('photo-puma-collection.jpeg') center/cover no-repeat; background-attachment: fixed; }
         .section-header { text-align: center; margin-bottom: 60px; }
         .section-header h2 { font-family: 'Anton', sans-serif; font-size: 56px; text-transform: uppercase; letter-spacing: 3px; }
@@ -74,6 +143,7 @@
         .brand-name { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
         .brand-price { font-size: 12px; color: #E5322C; margin-top: 4px; font-weight: 700; }
         
+        /* ===== SPEED ===== */
         .speed { padding: 120px 0; position: relative; overflow: hidden; }
         .speed-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); object-fit: cover; z-index: 0; }
         .speed-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1; }
@@ -85,6 +155,7 @@
         .speed-card h3 { font-family: 'Anton', sans-serif; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
         .speed-card p { font-size: 16px; opacity: 0.7; }
         
+        /* ===== STAKING ===== */
         .staking { padding: 120px 0; background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('photo-puma-team.jpeg') center/cover no-repeat; background-attachment: fixed; }
         .staking-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .pool-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 40px 30px; border-radius: 8px; text-align: center; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.08); }
@@ -98,14 +169,65 @@
         .pool-btn { display: inline-block; padding: 12px 32px; background: #E5322C; color: #FFFFFF; border-radius: 4px; transition: all 0.3s ease; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; font-weight: 700; border: none; cursor: pointer; }
         .pool-btn:hover { background: #c42924; transform: scale(1.02); }
         
+        /* ===== SHOES COLLECTION ===== */
         .shoes { padding: 100px 0; background: #0A0A0A; }
-        .shoes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .shoes-card { background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 8px; text-align: center; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.05); }
-        .shoes-card:hover { border-color: #E5322C; transform: translateY(-5px); }
-        .shoes-card img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 12px; }
-        .shoes-card h4 { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .shoes-card .price { color: #E5322C; font-weight: 700; margin-top: 4px; }
+        .shoes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .shoes-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px 20px 24px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .shoes-card:hover {
+            border-color: #E5322C;
+            transform: translateY(-6px);
+            background: rgba(229, 50, 44, 0.04);
+            box-shadow: 0 10px 40px rgba(229, 50, 44, 0.08);
+        }
+        .shoes-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+        }
+        .shoes-card h4 {
+            font-family: 'Anton', sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .shoes-card .price {
+            color: #E5322C;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 4px 0 12px;
+        }
+        .shoes-card .btn-buy {
+            display: inline-block;
+            padding: 8px 24px;
+            background: transparent;
+            border: 1px solid #E5322C;
+            color: #E5322C;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .shoes-card .btn-buy:hover {
+            background: #E5322C;
+            color: #FFFFFF;
+        }
         
+        /* ===== CONTRACT ADDRESS ===== */
         .contract-section { padding: 60px 0; background: #0A0A0A; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .contract-box { max-width: 900px; margin: 0 auto; text-align: center; padding: 30px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); }
         .contract-box h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.6; margin-bottom: 12px; }
@@ -116,6 +238,7 @@
         .contract-box .links a { font-size: 13px; color: #E5322C; text-decoration: underline; opacity: 0.7; transition: opacity 0.3s; }
         .contract-box .links a:hover { opacity: 1; }
         
+        /* ===== COUNTER ===== */
         .counter-section { padding: 80px 0; background: #0A0A0A; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .counter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 800px; margin: 0 auto; text-align: center; }
         .counter-item { padding: 30px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); }
@@ -123,14 +246,17 @@
         .counter-label { font-size: 14px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.6; margin-top: 8px; }
         .counter-timestamp { font-size: 11px; opacity: 0.3; margin-top: 16px; font-family: 'Courier New', monospace; }
         
+        /* ===== TICKER ===== */
         .ticker { background: #1A1A1A; padding: 12px 0; overflow: hidden; border-top: 1px solid rgba(229, 50, 44, 0.2); border-bottom: 1px solid rgba(229, 50, 44, 0.2); }
         .ticker-content { display: flex; animation: ticker-scroll 25s linear infinite; white-space: nowrap; }
         .ticker-item { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; padding: 0 40px; opacity: 0.7; font-weight: 400; }
         .ticker-item span { color: #E5322C; font-weight: 700; }
         @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
+        /* ===== LIQUIDITY POOL ===== */
         .liquidity-section { padding: 80px 0; background: #0A0A0A; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         
+        /* ===== FOOTER ===== */
         .footer { padding: 60px 0 30px; background: #0A0A0A; }
         .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; }
         .footer-brand img { height: 32px; width: auto; }
@@ -139,12 +265,13 @@
         .footer-links a:hover { opacity: 1; }
         .footer-disclaimer { width: 100%; font-size: 11px; opacity: 0.3; text-align: center; margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
         
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .hero-title { font-size: 80px; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
-            .speed-grid { grid-template-columns: repeat(2, 1fr); }
-            .staking-grid { grid-template-columns: repeat(2, 1fr); }
-            .shoes-grid { grid-template-columns: repeat(2, 1fr); }
+            .speed-grid { grid-template-columns: 1fr 1fr; }
+            .staking-grid { grid-template-columns: 1fr 1fr; }
+            .shoes-grid { grid-template-columns: 1fr 1fr; }
             .brand-grid { grid-template-columns: repeat(3, 1fr); }
             .counter-grid { grid-template-columns: 1fr; gap: 30px; }
         }
@@ -182,6 +309,8 @@
             <a href="#speed" data-i18n="nav_speed">Speed</a>
             <a href="#staking" data-i18n="nav_staking">Staking</a>
             <a href="#shoes" data-i18n="nav_shoes">Shoes</a>
+            <a href="fintech.html" data-i18n="nav_fintech">Fintech</a>
+            <a href="rwa.html" data-i18n="nav_rwa">RWA</a>
         </nav>
         <div class="header-controls">
             <select class="lang-select" id="langSelect">
@@ -333,7 +462,7 @@
         </div>
     </section>
 
-    <!-- SHOES -->
+    <!-- PUMA COLLECTION (ОБНОВЛЁННЫЙ БЛОК С 4 РАЗНЫМИ ФОТО) -->
     <section class="shoes" id="shoes">
         <div class="container">
             <div class="section-header">
@@ -342,24 +471,28 @@
             </div>
             <div class="shoes-grid">
                 <div class="shoes-card">
-                    <img src="photo-puma-shoes.jpeg" alt="PUMA Suede" loading="lazy">
-                    <h4>PUMA Suede</h4>
+                    <img src="puma-suede-classic.jpg" alt="PUMA Suede Classic" loading="lazy">
+                    <h4>Suede Classic</h4>
                     <div class="price">0.5 PUMA</div>
+                    <button class="btn-buy">Buy Now</button>
                 </div>
                 <div class="shoes-card">
-                    <img src="photo-puma-shoes.jpeg" alt="PUMA Future" loading="lazy">
-                    <h4>PUMA Future</h4>
+                    <img src="puma-future-ultimate.jpg" alt="PUMA Future Ultimate" loading="lazy">
+                    <h4>Future Ultimate</h4>
                     <div class="price">0.8 PUMA</div>
+                    <button class="btn-buy">Buy Now</button>
                 </div>
                 <div class="shoes-card">
-                    <img src="photo-puma-shoes.jpeg" alt="PUMA RS-X" loading="lazy">
-                    <h4>PUMA RS-X</h4>
+                    <img src="puma-rs-x-toy.jpg" alt="PUMA RS-X TOY" loading="lazy">
+                    <h4>RS-X TOY</h4>
                     <div class="price">1.2 PUMA</div>
+                    <button class="btn-buy">Buy Now</button>
                 </div>
                 <div class="shoes-card">
-                    <img src="photo-puma-shoes.jpeg" alt="PUMA Speed" loading="lazy">
-                    <h4>PUMA Speed</h4>
+                    <img src="puma-speed-cat.jpg" alt="PUMA Speed Cat" loading="lazy">
+                    <h4>Speed Cat</h4>
                     <div class="price">2.0 PUMA</div>
+                    <button class="btn-buy">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -446,6 +579,8 @@
                     <a href="#about" data-i18n="footer_about">About</a>
                     <a href="#speed" data-i18n="footer_speed">Speed</a>
                     <a href="#staking" data-i18n="footer_staking">Staking</a>
+                    <a href="fintech.html" data-i18n="footer_fintech">Fintech</a>
+                    <a href="rwa.html" data-i18n="footer_rwa">RWA</a>
                     <a href="https://t.me/puma_token" target="_blank" data-i18n="footer_telegram">Telegram</a>
                     <a href="#" target="_blank" data-i18n="footer_twitter">Twitter</a>
                 </div>
@@ -470,6 +605,8 @@
                 nav_speed: 'Speed',
                 nav_staking: 'Staking',
                 nav_shoes: 'Shoes',
+                nav_fintech: 'Fintech',
+                nav_rwa: 'RWA',
                 wallet_btn: 'Connect Wallet',
                 hero_badge: '⚡ Forever Faster',
                 hero_subtitle: 'PUMA Token — Multi-Chain Access Protocol',
@@ -521,6 +658,8 @@
                 footer_about: 'About',
                 footer_speed: 'Speed',
                 footer_staking: 'Staking',
+                footer_fintech: 'Fintech',
+                footer_rwa: 'RWA',
                 footer_telegram: 'Telegram',
                 footer_twitter: 'Twitter',
                 footer_disclaimer: '⚠️ <strong>PUMA</strong> is an independent SPL token (Protocol for Unified Multi-chain Access). Not affiliated with PUMA SE. The token is part of the BYT ecosystem and serves as a utility token for cross-chain interoperability. All brand names are fictional abbreviations used within the BYT ecosystem.'
@@ -530,6 +669,8 @@
                 nav_speed: 'Скорость',
                 nav_staking: 'Стейкинг',
                 nav_shoes: 'Кроссовки',
+                nav_fintech: 'Финтех',
+                nav_rwa: 'RWA',
                 wallet_btn: 'Подключить кошелек',
                 hero_badge: '⚡ Навсегда Быстрее',
                 hero_subtitle: 'Токен PUMA — Протокол мультичейн доступа',
@@ -581,6 +722,8 @@
                 footer_about: 'О нас',
                 footer_speed: 'Скорость',
                 footer_staking: 'Стейкинг',
+                footer_fintech: 'Финтех',
+                footer_rwa: 'RWA',
                 footer_telegram: 'Telegram',
                 footer_twitter: 'Twitter',
                 footer_disclaimer: '⚠️ <strong>PUMA</strong> — независимый SPL-токен (Protocol for Unified Multi-chain Access). Не аффилирован с PUMA SE. Токен является частью экосистемы BYT и служит утилитарным токеном для межсетевой совместимости. Все названия брендов являются вымышленными аббревиатурами, используемыми в экосистеме BYT.'
